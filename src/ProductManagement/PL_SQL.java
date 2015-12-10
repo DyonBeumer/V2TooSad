@@ -1,15 +1,13 @@
 package ProductManagement;
 
-public class PL_SQL {
-	private String _code;
-	public CodeStrategy _unnamed_CodeStrategy_;
-	public CodeStrategy _unnamed_CodeStrategy_2;
+public class PL_SQL implements CodeStrategy{
+	private String code;
 
 	public String getCode() {
-		return this._code;
+		return this.code;
 	}
 
 	public void setCode(String aCode) {
-		this._code = aCode;
+		this.code = aCode;
 	}
 }

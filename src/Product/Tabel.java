@@ -1,9 +1,7 @@
 package Product;
 public class Tabel {
-	private String _tabelNaam;
-	public Product _unnamed_Product_;
+	private String tabelNaam;
+	public Product productService;
 
-	public void gettabelNaam() {
-		throw new UnsupportedOperationException();
-	}
+	
 }

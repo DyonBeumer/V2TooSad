@@ -1,5 +1,5 @@
 package Client;
 
 public class DAOService {
-	public DAO _unnamed_DAO_;
+	public DAO Dao;
 }

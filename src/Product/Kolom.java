@@ -1,14 +1,14 @@
 package Product;
 public class Kolom {
-	private String _kolomNaam;
-	private int _positie;
-	public Tabel _behoort_tot;
+	private String kolomNaam;
+	private int positie;
+	public Tabel behoort_tot;
 
-	public void getkolomNaam() {
-		throw new UnsupportedOperationException();
+	public String getkolomNaam() {
+		return kolomNaam;
 	}
 
-	public void getPositie() {
-		throw new UnsupportedOperationException();
+	public int getPositie() {
+		return positie;
 	}
 }

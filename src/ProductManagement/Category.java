@@ -1,14 +1,15 @@
 package ProductManagement;
 
+import java.util.ArrayList;
 import java.util.Vector;
+
 import ProductManagement.BusinessRule_Type;
 
 public class Category {
-	private String _categoryNaam;
-	public Vector<BusinessRule_Type> _heeft = new Vector<BusinessRule_Type>();
-	public ProductManagement _unnamed_ProductManagement_;
+	private String categoryNaam;
+	public ArrayList<BusinessRule_Type> _heeft = new ArrayList<BusinessRule_Type>();
 
 	public String getCategoryNaam() {
-		return this._categoryNaam;
+		return this.categoryNaam;
 	}
 }
