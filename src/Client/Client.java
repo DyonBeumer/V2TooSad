@@ -1,5 +1,6 @@
 package Client;
 
+import Product.Product;
 import ProductManagement.ProductManagement;
 
 public class Client {

@@ -1,3 +1,4 @@
+package Product;
 public class Value {
 	private String _valueNaam;
 	private String _valueWaarde;

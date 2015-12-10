@@ -1,3 +1,4 @@
+package Product;
 public class Kolom {
 	private String _kolomNaam;
 	private int _positie;

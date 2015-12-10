@@ -1,5 +1,9 @@
 package ProductManagement;
 
+import java.awt.List;
+
+import Product.Product;
+
 public class BusinessRule_Type {
 	private String _typeNaam;
 	private String _failureMessage;

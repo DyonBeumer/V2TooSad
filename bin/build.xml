@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project basedir="." default="build">
+	<path id="build.classpath">
+		<pathelement location="classes"/>
+	</path>
+	<target name="init">
+		<mkdir dir="classes"/>
+	</target>
+	<target name="clean">
+		<delete dir="classes"/>
+	</target>
+	<target depends="init" name="build">
+		<javac srcdir="." destdir="classes" source="1.5" target="1.5" fork="yes">
+			<classpath refid="build.classpath"/>
+			<include name="ProductManagement/Category.java"/>
+			<include name="ProductManagement/ProductManagement.java"/>
+			<include name="ProductManagement/Operator.java"/>
+			<include name="ProductManagement/PL_SQL.java"/>
+			<include name="ProductManagement/CodeStrategy.java"/>
+			<include name="ProductManagement/BusinessRule_Type.java"/>
+			<include name="Client/DAO.java"/>
+			<include name="Client/DAOService.java"/>
+			<include name="Client/Client.java"/>
+			<include name="Value.java"/>
+			<include name="Rule.java"/>
+			<include name="Product.java"/>
+			<include name="Tabel.java"/>
+			<include name="Kolom.java"/>
+		</javac>
+	</target>
+</project>
