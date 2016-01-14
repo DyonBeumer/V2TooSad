@@ -2,14 +2,14 @@ package ProductManagement;
 
 import java.util.ArrayList;
 
-import ProductManagement.BusinessRule_Type;
+import ProductManagement.BusinessRuleType;
 
 public class Category {
 	private String categoryNaam;
-	public ArrayList<BusinessRule_Type> _heeft = new ArrayList<BusinessRule_Type>();
+	public ArrayList<BusinessRuleType> heeft = new ArrayList<BusinessRuleType>();
 
-	public Category(ArrayList<BusinessRule_Type> ls, String nm) {
-		_heeft = ls;
+	public Category(ArrayList<BusinessRuleType> ls, String nm) {
+		heeft = ls;
 		categoryNaam = nm;
 	}
 
@@ -17,12 +17,12 @@ public class Category {
 		return this.categoryNaam;
 	}
 
-	public ArrayList<BusinessRule_Type> get_heeft() {
-		return _heeft;
+	public ArrayList<BusinessRuleType> getheeft() {
+		return heeft;
 	}
 
-	public void set_heeft(ArrayList<BusinessRule_Type> _heeft) {
-		this._heeft = _heeft;
+	public void set_heeft(ArrayList<BusinessRuleType> _heeft) {
+		this.heeft = _heeft;
 	}
 
 	public void setCategoryNaam(String categoryNaam) {

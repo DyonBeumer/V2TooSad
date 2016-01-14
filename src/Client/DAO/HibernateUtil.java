@@ -1,4 +1,4 @@
-package Client;
+package Client.DAO;
 
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -6,7 +6,7 @@ import javax.persistence.Persistence;
 public class HibernateUtil {
 	private static String orclcfg = "nl.hu.ict.jpa.oracle";
 	private static String mysqlcfg = "nl.hu.ict.jpa.mysql";
-	private static boolean mysql = true;
+	private static boolean mysql = false;
 	private static String dbcfg = mysqlcfg;
 	private static final EntityManagerFactory entityManagerFactory;
 

@@ -1,4 +1,4 @@
-package Client;
+package Client.DAO;
 
 import java.util.*;
 
@@ -11,8 +11,5 @@ public interface GenericDao<T> {
 	void delete(T entity);
 	List<T> findAll();
 	void deleteAll();
-	EntityManager open();
-	EntityManager openTransaction();
-	void close();
-	void closeTransaction();
+
 }

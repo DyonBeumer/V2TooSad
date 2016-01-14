@@ -6,7 +6,7 @@ import org.stringtemplate.v4.*;
 import Product.Kolom;
 import Product.ProductFacade;
 import Product.Tabel;
-import ProductManagement.BusinessRule_Type;
+import ProductManagement.BusinessRuleType;
 import ProductManagement.ProductManagementFacade;
 import Product.Value;
 
@@ -16,7 +16,7 @@ public class Template_builder {
 	
 	public String GenerateAttributeRangeRule(Tabel t, Kolom k, ArrayList<Value> lst, BusinessRule_Type b){
 		
-		String ruleCode = "ARNG"+nr++;
+		String ruleCode = "ARNG"+(nr+1);
 		ProductFacade pf = new ProductFacade();
 		ProductManagementFacade pmf = new ProductManagementFacade();
 		
@@ -32,6 +32,11 @@ public class Template_builder {
 		System.out.println(out);
 		//String code = "create or replace TRIGGER" + ruleCode;
 		
+		return out;
+	}
+	public String GenerateAttributeCompareRule()
+	{
+		String out = "";
 		return out;
 	}
 

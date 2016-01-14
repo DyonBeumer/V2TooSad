@@ -1,4 +1,4 @@
-package Client;
+package Client.DAO;
 
 import ProductManagement.Operator;
 

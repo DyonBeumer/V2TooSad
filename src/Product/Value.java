@@ -1,11 +1,23 @@
 package Product;
+
+import javax.persistence.*;
+
+@Entity
+@Table(name="VALUE")
 public class Value {
+	@Id
+	@Column(name="VALUE_ID")
+	private int valueID;
+	@Column(name="WAARDE")
 	private String valueWaarde;
-	private int positie;
+	@Column(name="VOLGNUMMER")
+	private int volgnummer;
 	
+	
+	public Value(){}
 	public Value(String string, int i) {
 		valueWaarde = string;
-		positie = i;
+		volgnummer = i;
 	}
 	public String getValueWaarde() {
 		return valueWaarde;
@@ -14,10 +26,15 @@ public class Value {
 		this.valueWaarde = valueWaarde;
 	}
 	public int getPositie() {
-		return positie;
+		return volgnummer;
 	}
 	public void setPositie(int positie) {
-		this.positie = positie;
+		this.volgnummer = positie;
 	}
-	
+	public int getValueID() {
+		return valueID;
+	}
+	public void setValueID(int valueID) {
+		this.valueID = valueID;
+	}
 }

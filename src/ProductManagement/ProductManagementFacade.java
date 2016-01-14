@@ -29,7 +29,7 @@ public class ProductManagementFacade {
 		}
 		return lst;
 	}
-	public BusinessRule_Type voegOperatorToe(BusinessRule_Type b, Operator o){
+	public BusinessRuleType voegOperatorToe(BusinessRuleType b, Operator o){
 		ArrayList<Operator> lst = b.getOplst();
 		lst.add(o);
 		return b;
@@ -37,7 +37,7 @@ public class ProductManagementFacade {
 	}
 
 	public Operator createOperator(String string) {
-		return new Operator(string);
+		return new Operator();
 	}
 
 	public ArrayList<Operator> createOperatorList(Operator createOperator) {
@@ -46,8 +46,12 @@ public class ProductManagementFacade {
 		return list;
 	}
 
-	public BusinessRule_Type createBusinessRuleType(String string, String string2, ArrayList<Operator> createOperatorList) {
-		return new BusinessRule_Type(string, string2, createOperatorList);
+	public BusinessRuleType createBusinessRuleType(String string, String string2, ArrayList<Operator> createOperatorList) {
+		return new BusinessRuleType();		
+	}
+
+	public String getCode(int brtid) {
+		return null;
 		
 	}
 	

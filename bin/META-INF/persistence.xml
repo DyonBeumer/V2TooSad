@@ -1,0 +1,54 @@
+
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
+             version="2.0">
+
+    <persistence-unit name="nl.hu.ict.jpa.oracle">
+        <description>
+            Hibernate using Oracle
+        </description>
+
+        <class>ProductManagement.Operator</class>
+        <class>Product.Kolom</class>
+        <class>Product.Value</class>
+        <class>Product.Rule</class>
+		<class>Product.Tabel</class>
+		<class>ProductManagement.BusinessRuleType</class>
+		<class>ProductManagement.CodeTemplate</class>
+		
+        <properties>
+            <property name="javax.persistence.jdbc.driver" value="oracle.jdbc.driver.OracleDriver" />
+            <property name="javax.persistence.jdbc.url" value="jdbc:oracle:thin:@ondora02.hu.nl:8521:cursus02" />
+            <property name="javax.persistence.jdbc.user" value="tosad_2015_2b_team5" />
+            <property name="javax.persistence.jdbc.password" value="tosad_2015_2b_team5" />
+
+            <property name="hibernate.show_sql" value="true" />	<!-- true: shows each SQL  -->
+            <property name="hibernate.hbm2ddl.auto" value="validate" />  <!--  create: creates database -->
+            
+        </properties>
+
+    </persistence-unit>
+
+    <persistence-unit name="nl.hu.ict.jpa.mysql">
+        <description>
+            Hibernate using MySQL
+        </description>
+
+        <class>nl.hu.ict.Lecturer</class>
+
+        <properties>
+            <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
+            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost/test" />
+            <property name="javax.persistence.jdbc.user" value="root" />
+            <property name="javax.persistence.jdbc.password" value="" />
+
+			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
+            <property name="hibernate.show_sql" value="false" />
+            <property name="hibernate.hbm2ddl.auto" value="create" />
+            
+        </properties>
+
+    </persistence-unit>
+
+</persistence>
