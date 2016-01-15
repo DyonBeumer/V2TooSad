@@ -13,7 +13,7 @@ public class CodeTemplate {
 	private int CodeTemplateID;
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "BRT_BRT_ID", referencedColumnName = "BUSINESSRULETYPE_ID")
-	protected BusinessRuleType businessruletype;
+	private BusinessRuleType businessruletype;
 	
 	
 	

@@ -12,6 +12,9 @@ public class Tabel {
 	@Id
 	@Column(name="TABEL_ID")
 	private int tabelID;
+	@OneToOne
+	@JoinColumn(name="KOLOM_KOLOM_ID", referencedColumnName="KOLOM_ID")
+	private Kolom kolom;
 	
 	public Tabel(){}
 	public Tabel(String string) {

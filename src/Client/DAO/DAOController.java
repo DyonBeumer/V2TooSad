@@ -1,5 +1,7 @@
 package Client.DAO;
 
+
+
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -39,39 +41,42 @@ public class DAOController {
 		*/
 		
 		RuleDAO rdao = new RuleDAOImpl(em);
-		
 		BusinessRuleTypeDAO brtdao = new BusinessRuleTypeDAOImpl(em);
+		OperatorDAO odao = new OperatorDAOImpl(em);
+		List<Operator> olijst = odao.findAll();
 		List<BusinessRuleType> lijst = brtdao.findAll();
-		for(BusinessRuleType brt : lijst){
-			System.out.println(brt.getTypeNaam());
-			System.out.println(brt.template);
-			System.out.println(brt.getTemplate().getCode());
-		}
 		
 		//Rule r = rdao.findById(40);
 		//r.generateAttributeRangeRule(r.determineRule(), );
 		
-		/*
+		
 		for(Rule r : rdao.findAll()){
 			if(r.getSelected().equals("Y")){
 				int zoek = r.getBrtid();
+				int zoekop = r.getOprid();
+				String ruletype="";
 				String code="";
+				String operator="";
 				for(BusinessRuleType brt : lijst){
 					if(brt.getBusinessRuleTypeID()==zoek){
-						code = brt.getCode();
+						code = brt.getTemplate().getCode();
+						ruletype = brt.getTypeNaam();
 					}
 				}
-				r.generate(brtdao.findAll());
-			}
-			System.out.println("Ruleinfo "+ r.getKolommen().get(0).getkolomNaam());
-			System.out.println("test: "+ r.getKolommen().get(0).getTabellen().get(0).getTabelNaam());
-			for(Value v : r.getValues()){
-				System.out.println("Values: " + v.getValueWaarde());
+				for(Operator o : olijst){
+					if(o.getOperatorID() == zoekop){
+						operator = o.getOperatorNaam();
+					}
+				}
+				
+					r.generateCode(code);
+				
+			
+				
 				
 			}
-			
 		}
-		*/
+		
 		
 		
 		/*OperatorDAO odao = new OperatorDAOImpl(em);

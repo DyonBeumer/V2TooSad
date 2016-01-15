@@ -16,17 +16,15 @@ public class Kolom {
 	private String kolomNaam;
 	@Column(name = "VOLGNUMMER")
 	private int positie;
-	@OneToMany
-	@JoinColumn(name="KOLOM_KOLOM_ID")
-	private List<Tabel> tabellen = new ArrayList<Tabel>();
+	@OneToOne(mappedBy="kolom")
+	private Tabel tabel;
 	
-	
-	public List<Tabel> getTabellen() {
-		return tabellen;
+	public Tabel getTabel() {
+		return tabel;
 	}
 
-	public void setTabellen(List<Tabel> tabellen) {
-		this.tabellen = tabellen;
+	public void setTabel(Tabel tabel) {
+		this.tabel = tabel;
 	}
 
 	public Kolom(){}
