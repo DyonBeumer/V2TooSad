@@ -96,6 +96,7 @@ public class Rule {
 		return selected;
 	}
 	public int getValueAmount(String ct) {
+		
 		int values = 0;
 
 		for (int i = 0; i < ct.length(); i++) {
@@ -118,7 +119,7 @@ public class Rule {
 	public int getColumnAmount(String ct) {
 		int columns = 0;
 		for (int i = 0; i < ct.length(); i++) {
-			String checkColumn = "<COLUMN" + i + ">";
+			String checkColumn = "<KOLOM" + i + ">";
 			if (ct.contains(checkColumn)) {
 				columns++;
 			}
@@ -137,16 +138,18 @@ public class Rule {
 		return tables;
 	}
 	public String generateCode(String ct){
+		System.out.println(ct);
 		ST st = new ST(ct);
 		int valueint = getValueAmount(ct);
-		System.out.println(valueint);
+		System.out.println("Valueint: "+valueint);
 		int columnint = getColumnAmount(ct);
 		System.out.println(columnint);
 		int tableint = getTableAmount(ct);
 		boolean hasOperator = hasOperator(ct);
 		for(int i =1; i < valueint; i++){
 			st.add(("<VALUE"+i+">"), values.get((i-1)).getValueWaarde());
-			System.out.println(values.get((i-1)).getValueWaarde());
+			
+			System.out.println("values uit alist "+ values.get((i-1)).getValueWaarde());
 		}
 		for(int i =1; i < columnint; i++){
 			st.add(("<TABLE"+i+">"), kolommen.get(i-1).getTabel().getTabelNaam());
