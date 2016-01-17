@@ -4,16 +4,22 @@ import javax.persistence.*;
 
 @Entity
 @Table(name="VALUE")
-public class Value {
+public class Value implements Comparable<Value> {
 	@Id
 	@Column(name="VALUE_ID")
 	private int valueID;
 	@Column(name="WAARDE")
 	private String valueWaarde;
 	@Column(name="VOLGNUMMER")
-	private int volgnummer;
+	private Integer volgnummer;
 	
 	
+	public int getVolgnummer() {
+		return volgnummer;
+	}
+	public void setVolgnummer(int volgnummer) {
+		this.volgnummer = volgnummer;
+	}
 	public Value(){}
 	public Value(String string, int i) {
 		valueWaarde = string;
@@ -36,5 +42,8 @@ public class Value {
 	}
 	public void setValueID(int valueID) {
 		this.valueID = valueID;
+	}
+	public int compareTo(Value o) {
+		return volgnummer.compareTo(o.getVolgnummer());
 	}
 }

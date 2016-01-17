@@ -1,6 +1,7 @@
 package Product;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -169,13 +170,16 @@ public class Rule {
 		int tableint = getTableAmount(ct);
 		boolean hasOperator = hasOperator(ct);
 		if (!hasValueList(ct)) {
+			Collections.sort(values);
 			for (int i = 1; i <= valueint; i++) {
+				
 				st.add(("VALUE" + i), values.get((i - 1)).getValueWaarde());
 				System.out.println(values.get((i - 1)).getValueWaarde());
 			}
 		}
 		else if(hasValueList(ct)){
 			String valueList ="";
+			Collections.sort(values);
 			for(int i = 0; i < values.size(); i++){
 				valueList = valueList + values.get(i).getValueWaarde()+ ", ";
 				
