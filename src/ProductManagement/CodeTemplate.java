@@ -8,6 +8,8 @@ public class CodeTemplate {
 	
 	@Column(name="CODE")
 	private String code;
+	@Column(name ="LANGUAGE")
+	private String language;
 	@Id
 	@Column(name="CODETEMPLATE_ID")
 	private int CodeTemplateID;

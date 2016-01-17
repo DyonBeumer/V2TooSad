@@ -68,8 +68,10 @@ public class DAOController {
 						operator = o.getOperatorNaam();
 					}
 				}
-				
-					r.generateCode(code);
+				if (operator != null){
+				r.generateCode(code,operator);
+				}
+				else {r.generateCode(code,null);}
 				
 			
 				
