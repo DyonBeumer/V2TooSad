@@ -33,18 +33,18 @@ public class Rule {
 	private List<Kolom> kolommen = new ArrayList<Kolom>();
 	@Column(name = "BUSINESSRULETYPE_BRT_ID")
 	private int brtid;
-	@Column(name = "OPERATOR_OPERATOR_ID")
-	private int oprid;
+	@Column(name = "OPERATOR_OPERATOR_ID", nullable = true)
+	private Integer oprid;
+	
 
-	public int getOprid() {
+	public Integer getOprid() {
 		return oprid;
 	}
 
-	public void setOprid(int oprid) {
+	public void setOprid(Integer oprid) {
 		this.oprid = oprid;
 	}
 
-	// public ArrayList<Kolom> kolommen = new ArrayList<Kolom>();
 	public String getCodeTemplate() {
 		ProductManagementFacade pmf = new ProductManagementFacade();
 		return pmf.getCode(brtid);
@@ -68,13 +68,6 @@ public class Rule {
 
 	public Rule() {
 	}
-
-	public Rule(ArrayList<Value> vl, /* ArrayList<Kolom> kolom, */String cc) {
-		values = vl;
-		/* kolommen = kolom; */
-		customCode = cc;
-	}
-
 	public String getCustomCode() {
 		return customCode;
 	}
@@ -91,10 +84,6 @@ public class Rule {
 		this.values = values;
 	}
 
-	/*
-	 * public ArrayList<Kolom> getKolommen() { return kolommen; } public void
-	 * setKolommen(ArrayList<Kolom> kolommen) { this.kolommen = kolommen; }
-	 */
 	public String getFailuremessage() {
 		return failuremessage;
 	}
@@ -161,20 +150,18 @@ public class Rule {
 		return tables;
 	}
 
-	public String generateCode(String ct, String operator) {
+	public String generateCode(String ct, String operator, String naam) {
+		Collections.sort(kolommen);
 		ST st = new ST(ct);
+		st.add("NAME", naam);
 		int valueint = getValueAmount(ct);
-		System.out.println(valueint);
 		int columnint = getColumnAmount(ct);
-		System.out.println(columnint);
 		int tableint = getTableAmount(ct);
 		boolean hasOperator = hasOperator(ct);
 		if (!hasValueList(ct)) {
 			Collections.sort(values);
 			for (int i = 1; i <= valueint; i++) {
-				
 				st.add(("VALUE" + i), values.get((i - 1)).getValueWaarde());
-				System.out.println(values.get((i - 1)).getValueWaarde());
 			}
 		}
 		else if(hasValueList(ct)){
@@ -185,7 +172,6 @@ public class Rule {
 				
 			}
 			valueList = valueList.substring(0,valueList.length()-2);
-			System.out.println("kaas");
 			st.add("VALUELIST", valueList);
 		}
 		ArrayList<String> hulp = new ArrayList<String>();
@@ -197,11 +183,11 @@ public class Rule {
 				}
 			}
 			st.add(("TABLE" + i), hulp.get(i - 1));
-			System.out.println("adding: Tabel" + i + " = " + hulp.get(i - 1));
 		}
 		if (operator != null) {
 			st.add("OPERATOR", operator);
 		}
+		
 		if (customCode != null) {
 			st.add("CUSTOMCODE", customCode);
 		}
@@ -210,8 +196,14 @@ public class Rule {
 
 		}
 		st.add(("FAILMESSAGE"), failuremessage);
+		
 		System.out.println(st.render());
+	
 		return st.render();
+		
+		
+		
+		
 
 	}
 
@@ -227,34 +219,5 @@ public class Rule {
 		this.ruleId = ruleId;
 	}
 
-	public String determineRule() {
-		return new String(
-				"create or replace TRIGGER ATTRIBUUTRANGERULE BEFORE INSERT OR UPDATE ON <TABLE> for each row declar error1 EXCEPTION; BEGIN IF :new.<KOLOM> <OPERATOR> <VALUE1> and <VALUE2> THEN RAISE error1; end if; EXCEPTION when error1 then raise_application_error(-20002, '<FAILMESSAGE>'); END;");
-	}
-
-	public void generateAttributeRangeRule(String codetemplate, String operator) {
-		ST code = new ST(codetemplate);
-		code.add("TABLE", kolommen.get(0).getTabel().getTabelNaam());
-		code.add("KOLOM", kolommen.get(0).getkolomNaam());
-		code.add("OPERATOR", operator);
-		code.add("VALUE1", values.get(0).getValueWaarde());
-		code.add("VALUE2", values.get(1).getValueWaarde());
-		code.add("FAILMESSAGE", failuremessage);
-		// System.out.println(code.render());
-	}
-
-	public void generateAttributeCompareRule(String codetemp, String operator) {
-		ST code = new ST(codetemp);
-		code.add("TABLE", kolommen.get(0).getTabel().getTabelNaam());
-		code.add("KOLOM", kolommen.get(0).getkolomNaam());
-		code.add("OPERATOR", operator);
-		code.add("VALUE1", values.get(0).getValueWaarde());
-		code.add("FAILMESSAGE", failuremessage);
-		// System.out.println(code.render());
-		Map<String, Object> test = new HashMap<String, Object>();
-		test = code.getAttributes();
-		System.out.println("kaas");
-		test.values().toString();
-
-	}
+	
 }

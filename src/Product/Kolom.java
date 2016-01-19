@@ -8,14 +8,14 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "KOLOM")
-public class Kolom {
+public class Kolom implements Comparable<Kolom>{
 	@Id
 	@Column(name = "KOLOM_ID")
 	private int kolomID;
 	@Column(name = "KOLOMNAAM")
 	private String kolomNaam;
 	@Column(name = "VOLGNUMMER")
-	private int positie;
+	private Integer positie;
 	@OneToOne(mappedBy="kolom")
 	private Tabel tabel;
 	
@@ -64,5 +64,10 @@ public class Kolom {
 	
 	public void setPositie(int positie) {
 		this.positie = positie;
+	}
+
+	@Override
+	public int compareTo(Kolom other) {
+		return positie.compareTo(other.getPositie());
 	}
 }

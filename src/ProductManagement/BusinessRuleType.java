@@ -11,9 +11,19 @@ public class BusinessRuleType {
 	@Column(name = "BUSINESSRULETYPE_ID")
 	private int BusinessRuleTypeID;
 	@OneToOne(mappedBy = "businessruletype")
-	public CodeTemplate template;
+	private CodeTemplate template;
+	@Column(name = "AFKORTING")
+	private String afkorting;
 	//public CodeStrategy codeTemplate;
 	
+	public String getAfkorting() {
+		return afkorting;
+	}
+
+	public void setAfkorting(String afkorting) {
+		this.afkorting = afkorting;
+	}
+
 	public CodeTemplate getTemplate() {
 		return template;
 	}
