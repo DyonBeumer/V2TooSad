@@ -1,4 +1,4 @@
-package Client.DAO;
+package Client;
 
 import java.util.*;
 

@@ -1,4 +1,4 @@
-package Client.DAO;
+package DAO;
 
 import ProductManagement.BusinessRuleType;
 

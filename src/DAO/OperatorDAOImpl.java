@@ -1,4 +1,4 @@
-package Client.DAO;
+package DAO;
 
 import javax.persistence.EntityManager;
 import ProductManagement.Operator;

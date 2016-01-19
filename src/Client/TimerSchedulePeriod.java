@@ -1,6 +1,8 @@
-package Client.DAO;
+package Client;
 
 import java.util.TimerTask;
+
+import DAO.DAOController;
 
 public class TimerSchedulePeriod extends TimerTask{
 

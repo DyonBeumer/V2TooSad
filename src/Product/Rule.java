@@ -2,15 +2,21 @@ package Product;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 import org.stringtemplate.v4.ST;
 
 import ProductManagement.BusinessRuleType;
+import ProductManagement.Operator;
 import ProductManagement.ProductManagementFacade;
 
 @Entity
@@ -31,34 +37,36 @@ public class Rule {
 	@OneToMany
 	@JoinColumn(name = "RULE_RULE_ID")
 	private List<Kolom> kolommen = new ArrayList<Kolom>();
-	@Column(name = "BUSINESSRULETYPE_BRT_ID")
-	private int brtid;
-	@Column(name = "OPERATOR_OPERATOR_ID", nullable = true)
-	private Integer oprid;
+	@ManyToOne
+	@JoinColumn(name="BUSINESSRULETYPE_BRT_ID")
+	private BusinessRuleType brt;
+	@ManyToOne
+	@JoinColumn(name="OPERATOR_OPERATOR_ID", nullable = true)
+	private Operator op;
 	
-
-	public Integer getOprid() {
-		return oprid;
+	
+	public BusinessRuleType getBrt() {
+		return brt;
 	}
 
-	public void setOprid(Integer oprid) {
-		this.oprid = oprid;
+	public void setBrt(BusinessRuleType brt) {
+		this.brt = brt;
+	}
+
+	public Operator getOp() {
+		return op;
+	}
+
+	public void setOp(Operator op) {
+		this.op = op;
 	}
 
 	public String getCodeTemplate() {
-		ProductManagementFacade pmf = new ProductManagementFacade();
-		return pmf.getCode(brtid);
-	}
-
-	public int getBrtid() {
-		return brtid;
-	}
-
-	public void setBrtid(int brtid) {
-		this.brtid = brtid;
+		return brt.getTemplate().getCode();
 	}
 
 	public List<Kolom> getKolommen() {
+		Collections.sort(kolommen);
 		return kolommen;
 	}
 
@@ -77,6 +85,7 @@ public class Rule {
 	}
 
 	public List<Value> getValues() {
+		Collections.sort(values);
 		return values;
 	}
 
@@ -96,31 +105,34 @@ public class Rule {
 		return selected;
 	}
 
-	public int getValueAmount(String ct) {
+	public int getValueAmount() {
+		
 		int values = 0;
 
-		for (int i = 0; i < ct.length(); i++) {
+		for (int i = 0; i < getCodeTemplate().length(); i++) {
 			String checkValue = "<VALUE" + i + ">";
-			if (ct.contains(checkValue)) {
+			if (getCodeTemplate().contains(checkValue)) {
 				values++;
 			}
 		}
 		return values;
 	}
 
-	public boolean hasOperator(String ct) {
+	public boolean hasOperator() {
+
 		boolean operator = false;
-		if (ct.contains("<OPERATOR>")) {
+		if (getCodeTemplate().contains("<OPERATOR>")) {
 			operator = true;
 		}
 		return operator;
 	}
 
-	public int getColumnAmount(String ct) {
+	public int getColumnAmount() {
+		
 		int columns = 0;
-		for (int i = 0; i < ct.length(); i++) {
+		for (int i = 0; i < getCodeTemplate().length(); i++) {
 			String checkColumn = "<COLUMN" + i + ">";
-			if (ct.contains(checkColumn)) {
+			if (getCodeTemplate().contains(checkColumn)) {
 				columns++;
 			}
 		}
@@ -128,85 +140,31 @@ public class Rule {
 
 	}
 
-	public boolean hasValueList(String ct) {
+	public boolean hasValueList() {
+		
 		boolean hasValueList = false;
-		for (int i = 0; i < ct.length(); i++) {
+		for (int i = 0; i < getCodeTemplate().length(); i++) {
 			String checkColumn = "<VALUELIST>";
-			if (ct.contains(checkColumn)) {
+			if (getCodeTemplate().contains(checkColumn)) {
 				hasValueList = true;
 			}
 		}
 		return hasValueList;
 	}
 
-	public int getTableAmount(String ct) {
+	public int getTableAmount() {
+		
 		int tables = 0;
-		for (int i = 0; i < ct.length(); i++) {
+		for (int i = 0; i < getCodeTemplate().length(); i++) {
 			String checkTable = "<TABLE" + i + ">";
-			if (ct.contains(checkTable)) {
+			if (getCodeTemplate().contains(checkTable)) {
 				tables++;
 			}
 		}
 		return tables;
 	}
 
-	public String generateCode(String ct, String operator, String naam) {
-		Collections.sort(kolommen);
-		ST st = new ST(ct);
-		st.add("NAME", naam);
-		int valueint = getValueAmount(ct);
-		int columnint = getColumnAmount(ct);
-		int tableint = getTableAmount(ct);
-		boolean hasOperator = hasOperator(ct);
-		if (!hasValueList(ct)) {
-			Collections.sort(values);
-			for (int i = 1; i <= valueint; i++) {
-				st.add(("VALUE" + i), values.get((i - 1)).getValueWaarde());
-			}
-		}
-		else if(hasValueList(ct)){
-			String valueList ="";
-			Collections.sort(values);
-			for(int i = 0; i < values.size(); i++){
-				valueList = valueList + values.get(i).getValueWaarde()+ ", ";
-				
-			}
-			valueList = valueList.substring(0,valueList.length()-2);
-			st.add("VALUELIST", valueList);
-		}
-		ArrayList<String> hulp = new ArrayList<String>();
-		for (int i = 1; i <= tableint; i++) {
-			for (int i2 = 1; i2 <= columnint; i2++) {
-				if (!hulp.contains(kolommen.get(i2 - 1).getTabel()
-						.getTabelNaam())) {
-					hulp.add(kolommen.get(i2 - 1).getTabel().getTabelNaam());
-				}
-			}
-			st.add(("TABLE" + i), hulp.get(i - 1));
-		}
-		if (operator != null) {
-			st.add("OPERATOR", operator);
-		}
-		
-		if (customCode != null) {
-			st.add("CUSTOMCODE", customCode);
-		}
-		for (int i = 1; i <= columnint; i++) {
-			st.add(("COLUMN" + i), kolommen.get(i - 1).getkolomNaam());
-
-		}
-		st.add(("FAILMESSAGE"), failuremessage);
-		
-		System.out.println(st.render());
 	
-		return st.render();
-		
-		
-		
-		
-
-	}
-
 	public void setSelected(String selected) {
 		this.selected = selected;
 	}
