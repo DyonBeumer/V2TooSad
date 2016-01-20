@@ -6,7 +6,7 @@ public class ProductFacade {
 	
 	
 	public Rule MaakRuleAan(ArrayList<Kolom> kl, ArrayList<Value>vl, String cc){
-		return new Rule(vl,kl,cc);
+		return new Rule();
 	}
 	
 	//public maakKolomAan()
@@ -39,7 +39,7 @@ public class ProductFacade {
 		return lst;
 	}
 	public Kolom setTabel(Kolom k,Tabel t){
-		k.setBehoort_tot(t);
+		
 		return k;
 	}
 

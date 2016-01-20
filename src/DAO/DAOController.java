@@ -3,7 +3,6 @@ package DAO;
 
 
 import java.sql.Connection;
-import java.util.Collections;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -33,10 +32,7 @@ public class DAOController {
 		Connection c = connection.getConnection();
 		RuleDAO rdao = new RuleDAOImpl(em);
 		
-		for(Rule r : rdao.findAll()){
-			if(r.getSelected().equals("Y")){
-				Collections.sort(r.getKolommen());
-				connection.sendQuery(c,gen.generateCode(r));}
-		}
+		for(Rule r : rdao.findAllToBeGenerated()){		
+			connection.sendQuery(c,gen.generateCode(r));}
 	}
 }

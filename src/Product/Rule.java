@@ -17,7 +17,6 @@ import org.stringtemplate.v4.ST;
 
 import ProductManagement.BusinessRuleType;
 import ProductManagement.Operator;
-import ProductManagement.ProductManagementFacade;
 
 @Entity
 @Table(name = "RULE")

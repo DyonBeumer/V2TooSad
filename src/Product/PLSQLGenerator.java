@@ -19,7 +19,6 @@ public class PLSQLGenerator implements GeneratorService{
 			int columnint = r.getColumnAmount();
 			int tableint = r.getTableAmount();
 			List<Kolom> kolommen = r.getKolommen();
-			boolean hasOperator = r.hasOperator();
 			if (!r.hasValueList()) {
 				Collections.sort(values);
 				for (int i = 1; i <= valueint; i++) {
