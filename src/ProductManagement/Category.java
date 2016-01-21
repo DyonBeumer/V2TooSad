@@ -1,15 +1,24 @@
 package ProductManagement;
 
-import java.util.ArrayList;
 
-import ProductManagement.BusinessRuleType;
-
+import javax.persistence.*;
+//@Entity
+//@Table(name="CATEGORY")
 public class Category {
+//	@Column(name="CATEGORYNAAM")
 	private String categoryNaam;
-	public ArrayList<BusinessRuleType> heeft = new ArrayList<BusinessRuleType>();
+//	@Id
+//	@Column(name="CATEGORY_ID")
+	private int categoryID;
 
-	public Category(ArrayList<BusinessRuleType> ls, String nm) {
-		heeft = ls;
+	public int getCategoryID() {
+		return categoryID;
+	}
+	public void setCategoryID(int categoryID) {
+		this.categoryID = categoryID;
+	}
+	public Category(){}
+	public Category(String nm) {
 		categoryNaam = nm;
 	}
 
@@ -17,13 +26,6 @@ public class Category {
 		return this.categoryNaam;
 	}
 
-	public ArrayList<BusinessRuleType> getheeft() {
-		return heeft;
-	}
-
-	public void set_heeft(ArrayList<BusinessRuleType> _heeft) {
-		this.heeft = _heeft;
-	}
 
 	public void setCategoryNaam(String categoryNaam) {
 		this.categoryNaam = categoryNaam;

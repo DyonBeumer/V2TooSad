@@ -10,12 +10,14 @@
         </description>
 
         <class>ProductManagement.Operator</class>
+        <class>ProductManagement.BusinessRuleType</class>
+		<class>ProductManagement.CodeTemplate</class>
+		<class>ProductManagement.Category</class>
         <class>Product.Kolom</class>
         <class>Product.Value</class>
         <class>Product.Rule</class>
 		<class>Product.Tabel</class>
-		<class>ProductManagement.BusinessRuleType</class>
-		<class>ProductManagement.CodeTemplate</class>
+		
 		
         <properties>
             <property name="javax.persistence.jdbc.driver" value="oracle.jdbc.driver.OracleDriver" />

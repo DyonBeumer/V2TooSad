@@ -9,13 +9,59 @@ public class BusinessRuleType {
 	private String typeNaam;
 	@Id
 	@Column(name = "BUSINESSRULETYPE_ID")
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	private int BusinessRuleTypeID;
 	@OneToOne(mappedBy = "businessruletype")
 	private CodeTemplate template;
 	@Column(name = "AFKORTING")
 	private String afkorting;
-	//public CodeStrategy codeTemplate;
-	
+//	@ManyToOne
+//	@JoinColumn(name="CATEGORY_CATEGORY_ID")
+//	private Category category;
+//	public Category getCategory() {
+//		return category;
+//	}
+//
+//	public void setCategory(Category category) {
+//		this.category = category;
+//	}
+
 	public String getAfkorting() {
 		return afkorting;
 	}
@@ -37,18 +83,10 @@ public class BusinessRuleType {
 	public BusinessRuleType(String typeNaam, String failureMessage) {
 		super();
 		this.typeNaam = typeNaam;
-		//this.codeTemplate = codeTemplate;
+		
 	}
 	
 	
-	/*public BusinessRule_Type(String string, String string2,
-			ArrayList<Operator> createOperatorList) {
-		this.typeNaam = string;
-		this.failureMessage = string2;
-		oplst = createOperatorList;
-	}*/
-
-
 	public String getTypeNaam() {
 		return typeNaam;
 	}
@@ -66,7 +104,5 @@ public class BusinessRuleType {
 		BusinessRuleTypeID = businessRuleTypeID;
 	}
 
-	public String getCode() {
-		return new String("");
-	}
+	
 }
